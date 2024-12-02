@@ -824,17 +824,29 @@ namespace Panoptes.ViewModels.Charts
                                 break;
 
                             case SeriesType.Scatter:
-                                s = new ScatterSeries()
+                                var markerType = GetMarkerType(serie.Value.ScatterMarkerSymbol);
+                                var scatterSeries = new ScatterSeries()
                                 {
                                     MarkerFill = serie.Value.Color.ToOxyColor().Negative(),
                                     Tag = serie.Value.Name,
                                     Title = serie.Value.Name,
-                                    MarkerType = GetMarkerType(serie.Value.ScatterMarkerSymbol),
+                                    MarkerType = markerType,
                                     MarkerStroke = OxyColors.Undefined,
                                     MarkerStrokeThickness = 0,
-                                    MarkerOutline = null,
                                     RenderInLegend = true
                                 };
+
+                                if (markerType == MarkerType.Custom)
+                                {
+                                    scatterSeries.MarkerOutline = new[]
+                                    {
+                                        new ScreenPoint(-1.0, -0.5774),
+                                        new ScreenPoint(1.0, -0.5774),
+                                        new ScreenPoint(0, 1.1548)
+                                    };
+                                }
+
+                                s = scatterSeries;
                                 lock (plot.SyncRoot)
                                 {
                                     plot.Series.Add(s);

@@ -16,7 +16,11 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="QuantConnect.Common" Version="2.5.16753" />
+	  <ProjectReference Include="..\..\Lean\Common\QuantConnect.csproj" />
+	  <ProjectReference Include="..\..\Lean\Compression\QuantConnect.Compression.csproj" />
+	  <ProjectReference Include="..\..\Lean\Configuration\QuantConnect.Configuration.csproj" />
+	  <ProjectReference Include="..\..\Lean\Logging\QuantConnect.Logging.csproj" />
+	  <ProjectReference Include="..\..\Lean\Logging\QuantConnect.Logging.csproj" />
 	</ItemGroup>
 
 </Project>
